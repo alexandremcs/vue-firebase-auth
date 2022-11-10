@@ -3,7 +3,7 @@
         <section class="forms">
 
             <!-- User register form. -->
-            <form class="register" @submit.prevent="register">
+            <form class="register_form" @submit.prevent="register">
                 <h2>Registre-se</h2>
                 <input
                     type="email"
@@ -20,7 +20,7 @@
             </form>
 
             <!-- User login form. -->
-            <form class="login" @submit.prevent="login">
+            <form class="login_form" @submit.prevent="login">
                 <h2>Login</h2>
                 <input
                     type="email"
@@ -50,11 +50,11 @@ export default {
         const store = useStore();
 
         const register = () => {
-            store.dispatch('register'. register.value)
+            store.dispatch('register', register_form.value)
         }
 
         const login = () => {
-            store.dispatch('login'. login_form.value)
+            store.dispatch('login', login_form.value)
         }
 
         return {
