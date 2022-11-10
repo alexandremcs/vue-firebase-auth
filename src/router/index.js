@@ -1,5 +1,7 @@
+import { auth } from '@/firebase'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 
 const routes = [
   {
@@ -33,6 +35,21 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+// Checking if the user is logged and redirecting to the correct route
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' && auth.currentUser) {
+    next('/')
+    return
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+    next('/login')
+    return
+  }
+
+  next()
 })
 
 export default router
