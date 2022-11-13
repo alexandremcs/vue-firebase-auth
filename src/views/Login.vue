@@ -57,6 +57,7 @@ import { useStore } from 'vuex'
 
 export default {
     setup () {
+        // Manipulating data from forms and integrating with the store file
         const register_form = ref({});
         const login_form = ref({});
         const store = useStore();
@@ -77,6 +78,7 @@ export default {
             login
         }
     },
+    // Methods to toggle the forms login and register
     methods: {
         changeLogin: function () {    
             document.getElementById('login-form').classList.remove('x-register-position');        
@@ -132,9 +134,10 @@ export default {
     position: relative;
     box-shadow: 0 0 12px 5px rgb(227, 251, 255);
     border-radius: 30px;
+    background-color: #999;
 }
 .toggle-btn{
-    padding: 10px 20px;
+    padding: 10px 28px;
     cursor: pointer;
     background: transparent;
     border: 0;

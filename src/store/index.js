@@ -27,6 +27,7 @@ export default createStore({
     }
   },
   actions: {
+    // Action to register a new user on firebase    
     async register ({commit}, details) {
       const { email, password } = details
 
@@ -57,6 +58,7 @@ export default createStore({
 
       router.push('/')
     },
+    // Action to login with a registered user of firebase
     async login ({commit}, details) {
       const { email, password } = details
 
@@ -81,6 +83,7 @@ export default createStore({
 
       router.push('/')
     },
+    // Action to user logout and CLEAR_USER mutation
     async logout ({commit}, details) {
       await signOut(auth)
 
@@ -89,6 +92,7 @@ export default createStore({
       router.push('/login')
     },
 
+    // Redirects the user to the correct page if its refresh the page
     fetchUser ({ commit }) {
       auth.onAuthStateChanged(async user => {
         if (user === null) {

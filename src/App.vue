@@ -1,8 +1,8 @@
 <template>
   <div id="nav" v-if="$store.state.user">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    <button @click="$store.dispatch('logout')">Sair</button>
+    <router-link to="/about">About</router-link> |    
+    <button class="logout-btn" @click="$store.dispatch('logout')">Sair</button>
   </div>
   <router-view/>
 </template>
@@ -12,6 +12,7 @@ import { onBeforeMount  } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
+  // Redirects the user to the correct page if its refresh the page
   setup() {
     const store = useStore()
 
@@ -47,5 +48,9 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.logout-btn {
+  padding: 0 10px;
 }
 </style>
