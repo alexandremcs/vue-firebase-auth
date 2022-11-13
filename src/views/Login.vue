@@ -3,9 +3,9 @@
         <section class="forms">
             <div class="form-box">
                 <div class="selector-box">
-                    <div id="btn"></div>
-                    <button type="button" class="toggle-btn" @click="showLogin()">Login</button>
-                    <button type="button" class="toggle-btn" @click="showRegister()">Cadastrar</button>
+                    <div id="btn" class="btn"></div>
+                    <button type="button" class="toggle-btn" v-on:click="changeLogin">Login</button>
+                    <button type="button" class="toggle-btn" v-on:click="changeRegister">Cadastrar</button>
                 </div>
                 <!-- User login form. -->
                 <form id="login-form" class="login-form" @submit.prevent="login">
@@ -60,6 +60,7 @@ export default {
         const register_form = ref({});
         const login_form = ref({});
         const store = useStore();
+        
 
         const register = () => {
             store.dispatch('register', register_form.value)
@@ -74,6 +75,24 @@ export default {
             login_form,
             register,
             login
+        }
+    },
+    methods: {
+        changeLogin: function () {    
+            document.getElementById('login-form').classList.remove('x-register-position');        
+            document.getElementById('login-form').classList.add('x-login-position');            
+            document.getElementById('register-form').classList.remove('y-register-position');
+            document.getElementById('register-form').classList.add('y-login-position');
+            document.getElementById('btn').classList.remove('z-register-position');
+            document.getElementById('btn').classList.add('z-login-position');
+        },
+        changeRegister: function () {            
+            document.getElementById('login-form').classList.remove('x-login-position');
+            document.getElementById('login-form').classList.add('x-register-position');
+            document.getElementById('register-form').classList.remove('y-login-position');
+            document.getElementById('register-form').classList.add('y-register-position');
+            document.getElementById('btn').classList.remove('z-login-position');
+            document.getElementById('btn').classList.add('z-register-position');
         }
     }
 }
@@ -105,6 +124,7 @@ export default {
     background: white;
     padding: 6px;
     border-radius: 10px;
+    overflow: hidden;
 }
 .selector-box {
     width: 220px;
@@ -122,15 +142,15 @@ export default {
     position: relative;
     color: white;
 }
-#btn {
+.btn {
     top: 0;
-    left: 0;
     position: absolute;
     width: 110px;
     height: 100%;
     background: linear-gradient(to right, rgb(2, 38, 48), rgb(8, 75, 94));
     border-radius: 30px;
     transition: 0.3s;
+    left: 0;
 }
 
 .login-form {
@@ -169,5 +189,23 @@ export default {
     border: 0;
     outline: none;
     border-radius: 11px;
+}
+.x-login-position{
+    left: 50px
+}
+.y-login-position{
+    left: 450px;
+}
+.z-login-position{
+    left: 0
+}
+.x-register-position{
+    left: -400px;
+}
+.y-register-position{
+    left: 50px
+}
+.z-register-position{
+    left: 110px
 }
 </style>
